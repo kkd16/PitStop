@@ -1,5 +1,3 @@
-
-import time
 import os
 from datetime import date
 
@@ -45,20 +43,3 @@ def getLargest():
             largestString = entry
 
     print("Largest:" ,largestInt, " ",largestString)
-
-
-def timer():
-
-    t = 0
-    while t<5:
-        mins, secs = divmod(t, 60)
-        timer = '{:02d}:{:02d}'.format(mins, secs)
-        print(timer, end="\r")
-        time.sleep(1)
-        t += 1
-
-    writeData(timer)
-
-
-timer()
-getLargest()

@@ -1,6 +1,15 @@
 # MAIN FRAME WITH GRAPHICS
 import pygame
 
+import time
+import math
+import timeFunctions
+
+#Timer string
+timerString = "00:00"
+timerInt = 0
+tick = 0
+
 ## ALL FUNCTIONS ##
 
 # Image display function
@@ -61,7 +70,7 @@ oliver = User("Oliver", 74)
 
 ## OBJECT INITIALIZATION ##
 
-text = franklinLarge.render('Kyle is gay', True, black, white)
+text = font.render('Kyle is gay', True, black, white)
 textRect = text.get_rect()
 textRect.center = (150, 350)
 
@@ -85,7 +94,8 @@ while running:
             # Homescreen Poo button presssed
             if modes==0 and (mousePos[0]>43 and mousePos[0]<343) and (mousePos[1]>50 and mousePos[1]<200):
                 modes=1
-                # Do timer functions maybe
+                timerInt = 0
+                tick = 0
         
     # Update display
 
@@ -98,9 +108,19 @@ while running:
     # In timer
     elif modes==1:
         screen.fill(white)
-        text = franklinLarge.render('Kyle is gay', True, black, white)
+        text = font.render('Kyle is gay', True, black, white)
         screen.blit(text, textRect)
+
+        mins, secs = divmod(timerInt, 60)
+        timerString = '{:02d}:{:02d}'.format(mins, secs)
+        print(timerString, end="\r")
+        #time.sleep(1)
+        tick += 1
+
+        timerInt = math.floor(tick/60)
+
+
         
 
     pygame.display.update()
-    clock.tick(30)
+    clock.tick(60)
