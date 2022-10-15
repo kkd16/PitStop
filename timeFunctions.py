@@ -107,7 +107,7 @@ def stop(endTime):
     
     if (filesize==0):
         writeData(endTime)
-        return tuple(-1, "No Record")
+        return (-1, "No Record")
 
     writeData(endTime)
     file = open(fileName, "r")

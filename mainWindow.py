@@ -6,6 +6,10 @@ import math
 import timeFunctions
 import facts
 
+#initialize function
+f = open("userdata.txt", "w")
+f.close()
+
 #Timer string
 timerString = "00:00"
 timerInt = 0
