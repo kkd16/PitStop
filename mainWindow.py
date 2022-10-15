@@ -88,6 +88,9 @@ oliver = User("Oliver", 74)
 # Ints
 totalSeconds = 0
 freezeTimerString = ""
+accum = 0
+stars = 0
+starTimer = 0
 
 ####
 
@@ -126,6 +129,21 @@ while running:
                 modes=2
                 totalSeconds = timeFunctions.calcSeconds(timerString)
                 freezeTimerString = timerString
+
+                # Star determining
+                accum = 0
+                if totalSeconds < 60:
+                    stars = 5
+                elif totalSeconds < 120:
+                    stars = 4
+                elif totalSeconds < 240:
+                    stars = 3
+                elif totalSeconds < 480:
+                    stars = 2
+                elif totalSeconds < 600:
+                    stars = 1
+                else :
+                    stars = 0
 
                 #temporary print for time difference
                 print("Time Difference: \n")
@@ -167,7 +185,7 @@ while running:
                 dots=2
             elif dots == 2:
                 dots=3
-            else :
+            else:
                 dots=0
         
         # Timer
@@ -195,7 +213,22 @@ while running:
         screen.blit(text, textRect)
 
         # Stars
+        starTimer += 1
+
+        if accum == 1:
+            img(star1, 0 , 0)
+        elif accum == 2:
+            img(star2, 0 , 0)
+        elif accum == 3:
+            img(star3, 0 , 0)
+        elif accum == 4:
+            img(star4, 0 , 0)
+        else:
+            img(star5, 0 , 0)
         
+        if (starTimer % 15) == 0 :
+            if accum < stars:
+                accum += 1
 
     pygame.display.update()
     clock.tick(60)
