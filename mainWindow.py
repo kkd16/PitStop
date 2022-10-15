@@ -4,10 +4,11 @@ import pygame
 import time
 import math
 import timeFunctions
+import getx
 import facts
 
 #initialize function
-f = open("userdata.txt", "w")
+f = open("userdata.txt", "a")
 f.close()
 
 #Timer string
@@ -87,12 +88,14 @@ clock = pygame.time.Clock()
 # User
 oliver = User("Oliver", 74)
 
-# Ints
+# Temps and stuff
 totalSeconds = 0
 freezeTimerString = ""
 accum = 0
 stars = 0
 starTimer = 0
+currentFact = ""
+differenceStr = ""
 
 ####
 
@@ -106,15 +109,15 @@ bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, w
 bottomTextRect = bottomText.get_rect()
 bottomTextRect.center = (197, 675)
 
-stat1 = franklinMed.render( timeFunctions.getFastest(), True, black, greyLight)
+stat1 = franklinMed.render( timeFunctions.getFastest(), True, black, white)
 stat1Rect = stat1.get_rect()
 stat1Rect.center = (197, 300)
 
-stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, greyLight)
+stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
 stat2Rect = stat2.get_rect()
 stat2Rect.center = (197, 400)
 
-stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, greyLight)
+stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
 stat3Rect = stat3.get_rect()
 stat3Rect.center = (197, 400)
 
@@ -136,7 +139,9 @@ while running:
                 modes=1
                 timerInt = 0
                 tick = 0
-                bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
+                currentFact = facts.getFact("facts.txt")
+                bottomText = franklinSmall.render(currentFact, True, grey, white)
+                bottomTextRect.center = (getx.getX(currentFact), 675)
 
             # Poo stop button pressed
             elif modes==1 and (mousePos[0]>33 and mousePos[0]<358)and (mousePos[1]>491 and mousePos[1]<589):
@@ -159,10 +164,9 @@ while running:
                 else :
                     stars = 0
 
-                #temporary print for time difference
-                print("Time Difference: \n")
-                print(timeFunctions.stop(timerString))
+                differenceStr = timeFunctions.stop(timerString)
 
+            # Stats button clicked
             elif modes==0 and (mousePos[0]>22 and mousePos[0]<375)and (mousePos[1]>132 and mousePos[1]<342):
                 modes = 3
         
@@ -218,7 +222,9 @@ while running:
         # Facts
         screen.blit(bottomText, bottomTextRect)
         if (tick/60 % 10) == 0:
-            bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
+            currentFact = facts.getFact("facts.txt")
+            bottomText = franklinSmall.render(currentFact, True, grey, white)
+            bottomTextRect.center = (getx.getX(currentFact), 675)
     
     # End timer screen
     elif modes==2:
@@ -228,6 +234,10 @@ while running:
 
         text = franklinLarge.render(freezeTimerString, True, black, greyLight)
         screen.blit(text, textRect)
+
+        bottomText = franklinSmall.render(differenceStr, True, grey, white)
+        bottomTextRect.center = (getx.getX(differenceStr), 675)
+        screen.blit(bottomText, bottomTextRect)
 
         # Stars
         starTimer += 1
@@ -247,6 +257,7 @@ while running:
             if accum < stars:
                 accum += 1
 
+    # Stats page
     else :
         screen.fill(white)
         img(bg3, 0, 0)
