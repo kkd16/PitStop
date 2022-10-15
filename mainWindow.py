@@ -103,6 +103,7 @@ while running:
             # Homescreen Poo button presssed
             elif modes==1 and (mousePos[1]>350 and mousePos[1]<700):
                 modes=2
+                timeFunctions.writeData(timerString)
         
     # Update display
 
