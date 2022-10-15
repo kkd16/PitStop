@@ -48,12 +48,18 @@ pygame.display.flip()
 
 # Images
 bg0 = pygame.image.load('mainpage.jpg')
-bg1 = pygame.image.load('progresspage.jpg')
+bg1 = pygame.image.load('progresspage1.0.jpg')
+bg2 = pygame.image.load('scorepage1.0.jpg')
 homePagePooIcon = pygame.image.load('poopicon.png')
 homePageTrendsIcon = pygame.image.load('arrowicon.png')
 dot1 = pygame.image.load('dot/dot1.png')
 dot2 = pygame.image.load('dot/dot2.png')
 dot3 = pygame.image.load('dot/dot3.png')
+star1 = pygame.image.load('stars/star1.png')
+star2 = pygame.image.load('stars/star2.png')
+star3 = pygame.image.load('stars/star3.png')
+star4 = pygame.image.load('stars/star4.png')
+star5 = pygame.image.load('stars/star5.png')
 
 # Colours
 black = (0,0,0)
@@ -74,6 +80,10 @@ clock = pygame.time.Clock()
 
 # User
 oliver = User("Oliver", 74)
+
+# Ints
+totalSeconds = 0
+freezeTimerString = ""
 
 ####
 
@@ -110,6 +120,8 @@ while running:
             # Poo stop button pressed
             elif modes==1 and (mousePos[0]>33 and mousePos[0]<358)and (mousePos[1]>491 and mousePos[1]<589):
                 modes=2
+                totalSeconds = timeFunctions.calcSeconds(timerString)
+                freezeTimerString = timerString
 
                 #temporary print for time difference
                 print("Time Difference: \n")
@@ -127,7 +139,7 @@ while running:
 
     # In timer screen
     elif modes==1:
-        # UI updates
+        # Update UI
         screen.fill(white)
 
         img(bg1, 0, 0)
@@ -171,7 +183,15 @@ while running:
     
     # End timer screen
     elif modes==2:
+        # Update UI
         screen.fill(white)
+        img(bg2, 0, 0)
+
+        text = franklinLarge.render(freezeTimerString, True, black, greyLight)
+        screen.blit(text, textRect)
+
+        # Stars
+        
 
     pygame.display.update()
     clock.tick(60)
