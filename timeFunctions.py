@@ -39,5 +39,25 @@ def getLargest():
         if (secs > largestInt):
             largestInt = secs
             largestString = entry
+    
+    return tuple(largestString.split("+"))
 
-    print("Largest:" ,largestInt, " ",largestString)
+def getFastest():
+
+    fileName = "userdata.txt"
+    file = open(fileName, "r")
+    
+    string = file.read()
+    array = string.split("#")
+
+    smallestInt = 9999999999999
+    smallestString = ""
+
+    for entry in array:
+        array = entry.split("+")
+        secs = calcSeconds(array[1])
+        if (secs < smallestInt):
+            smallestInt = secs
+            smallestString = entry
+
+    return tuple(smallestString.split("+"))
