@@ -6,6 +6,10 @@ import math
 import timeFunctions
 import facts
 
+#initialize function
+f = open("userdata.txt", "w")
+f.close()
+
 #Timer string
 timerString = "00:00"
 timerInt = 0
@@ -47,19 +51,33 @@ pygame.display.flip()
 ## VARIABLE INITIALIZATION ##
 
 # Images
-bg = pygame.image.load('mainpage.jpg')
+bg0 = pygame.image.load('mainpage.jpg')
+bg1 = pygame.image.load('progresspage1.0.jpg')
+bg2 = pygame.image.load('scorepage1.0.jpg')
+homePagePooIcon = pygame.image.load('poopicon.png')
+homePageTrendsIcon = pygame.image.load('arrowicon.png')
+dot1 = pygame.image.load('dot/dot1.png')
+dot2 = pygame.image.load('dot/dot2.png')
+dot3 = pygame.image.load('dot/dot3.png')
+star1 = pygame.image.load('stars/star1.png')
+star2 = pygame.image.load('stars/star2.png')
+star3 = pygame.image.load('stars/star3.png')
+star4 = pygame.image.load('stars/star4.png')
+star5 = pygame.image.load('stars/star5.png')
 
 # Colours
 black = (0,0,0)
 white = (255,255,255)
 grey = (177,177,177)
+greyLight = (240,240,240)
 
 # Fonts
-franklinLarge=pygame.font.SysFont("Franklin", 40)
+franklinLarge=pygame.font.SysFont("Franklin", 135)
 franklinSmall=pygame.font.SysFont("Franklin", 25)
 
 # Run Modes
 modes = 0 # 0=home, 1=timer, 2=endtimer, 3=trends
+dots = 0 # 0 dots, 1 dot, 2 dots, 3 dots
 
 # Timer?
 clock = pygame.time.Clock()
@@ -67,17 +85,21 @@ clock = pygame.time.Clock()
 # User
 oliver = User("Oliver", 74)
 
+# Ints
+totalSeconds = 0
+freezeTimerString = ""
+
 ####
 
 ## OBJECT INITIALIZATION ##
 
-text = franklinLarge.render(timerString, True, black, white)
+text = franklinLarge.render(timerString, True, black, greyLight)
 textRect = text.get_rect()
-textRect.center = (150, 350)
+textRect.center = (195, 295)
 
-welcomeBack = franklinSmall.render("Welcome, " + oliver.name + "!", True, black, white)
-welcomeBackRect = welcomeBack.get_rect()
-welcomeBackRect.center = (197, 675)
+bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
+bottomTextRect = bottomText.get_rect()
+bottomTextRect.center = (197, 675)
 
 ####
 
@@ -93,32 +115,87 @@ while running:
             mousePos=pygame.mouse.get_pos()
 
             # Homescreen Poo button presssed
-            if modes==0 and (mousePos[0]>43 and mousePos[0]<343) and (mousePos[1]>50 and mousePos[1]<200):
+            if modes==0 and (mousePos[0]>25 and mousePos[0]<373) and (mousePos[1]>382 and mousePos[1]<592):
                 modes=1
                 timerInt = 0
                 tick = 0
+                bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
+
+            # Poo stop button pressed
+            elif modes==1 and (mousePos[0]>33 and mousePos[0]<358)and (mousePos[1]>491 and mousePos[1]<589):
+                modes=2
+                totalSeconds = timeFunctions.calcSeconds(timerString)
+                freezeTimerString = timerString
+
+                #temporary print for time difference
+                print("Time Difference: \n")
+                print(timeFunctions.stop(timerString))
         
     # Update display
 
-    # Homescreen
+    # Home screen
     if modes == 0:
         screen.fill(white)
-        img(bg, 0, 0)
-        screen.blit(welcomeBack, welcomeBackRect)
+        img(bg0, 0, 0)
+        img(homePagePooIcon, 0, 0)
+        img(homePageTrendsIcon, 0, 0)
+        screen.blit(bottomText, bottomTextRect)
 
-    # In timer
+    # In timer screen
     elif modes==1:
+        # Update UI
         screen.fill(white)
-        text = franklinLarge.render(timerString, True, black, white)
-        screen.blit(text, textRect)
 
+        img(bg1, 0, 0)
+
+        if dots == 1 :
+            img(dot1, 0, 0)
+
+        elif dots == 2 :
+            img(dot1, 0, 0)
+            img(dot2, 0, 0)
+        
+        elif dots == 3 :
+            img(dot1, 0, 0)
+            img(dot2, 0, 0)
+            img(dot3, 0, 0)
+
+        if (tick/60 % 1) == 0:
+            if dots == 0:
+                dots=1
+            elif dots == 1:
+                dots=2
+            elif dots == 2:
+                dots=3
+            else :
+                dots=0
+        
+        # Timer
+        text = franklinLarge.render(timerString, True, black, greyLight)
+        screen.blit(text, textRect)
+                
         mins, secs = divmod(timerInt, 60)
         timerString = '{:02d}:{:02d}'.format(mins, secs)
-        print(timerString, end="\r")
-        #time.sleep(1)
         tick += 1
 
         timerInt = math.floor(tick/60)
+
+        # Facts
+        screen.blit(bottomText, bottomTextRect)
+        if (tick/60 % 10) == 0:
+            bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
+    
+    # End timer screen
+    elif modes==2:
+        # Update UI
+        screen.fill(white)
+        img(bg2, 0, 0)
+
+        text = franklinLarge.render(freezeTimerString, True, black, greyLight)
+        screen.blit(text, textRect)
+
+        # Stars
+        
 
     pygame.display.update()
     clock.tick(60)

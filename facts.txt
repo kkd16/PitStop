@@ -14,6 +14,7 @@ Poop is typically brown due to stercobilin
 People poop anywhere from 3x a day to 3x a week
 Dogs produce nearly 10 million tons of waste annually
 Pandas poop 50 pounds every day
+<<<<<<< HEAD
 Lots of poop can spontaneously combust
 It's possible to poop out of your mouth
 Your poop is full of fat, bacteria, dead cells, and more! 
@@ -22,4 +23,5 @@ Even if you don't eat, you'll still poop!
 Poop transplants are a thing!
 You can drink poop!
 Human poop could be the power source of the future
-coprophagics are people who willingly eat poop
+Coprophagics are people who willingly eat poop
+Sometimes poo makes a tasty snack!
