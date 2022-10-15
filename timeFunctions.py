@@ -52,7 +52,7 @@ def getLargest():
 
     file.close()
     largestArray = largestString.split("+")
-    return "Your worst time was " + largestArray[1] + " on " + largestArray[0] + "."
+    return "Worst time: " + largestArray[1] + " (" + largestArray[0] + ")."
 
 def getFastest():
 
@@ -78,7 +78,7 @@ def getFastest():
 
     file.close()
     smallestArray = smallestString.split("+")
-    return "Your best time was " + smallestArray[1] + " on " + smallestArray[0] + "."
+    return "Best time: " + smallestArray[1] + " (" + smallestArray[0] + ")."
 
 def getAverage():
 
@@ -105,7 +105,7 @@ def getAverage():
     ret = convertSecsToString(avgInt)
 
     file.close()
-    return "Your average poo time is " + ret + "."
+    return "Average poo: " + ret + "."
 
 # Writes data
 # Returns Difference from last poo
