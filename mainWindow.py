@@ -4,6 +4,7 @@ import pygame
 import time
 import math
 import timeFunctions
+import facts
 
 #Timer string
 timerString = "00:00"
