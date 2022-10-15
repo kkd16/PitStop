@@ -8,7 +8,7 @@ import getx
 import facts
 
 #initialize function
-f = open("userdata.txt", "w")
+f = open("userdata.txt", "a")
 f.close()
 
 #Timer string
@@ -95,6 +95,7 @@ accum = 0
 stars = 0
 starTimer = 0
 currentFact = ""
+differenceStr = ""
 
 ####
 
@@ -140,7 +141,7 @@ while running:
                 tick = 0
                 currentFact = facts.getFact("facts.txt")
                 bottomText = franklinSmall.render(currentFact, True, grey, white)
-                bottomTextRect.center = (getx.getx(currentFact), 675)
+                bottomTextRect.center = (getx.getX(currentFact), 675)
 
             # Poo stop button pressed
             elif modes==1 and (mousePos[0]>33 and mousePos[0]<358)and (mousePos[1]>491 and mousePos[1]<589):
@@ -163,10 +164,9 @@ while running:
                 else :
                     stars = 0
 
-                #temporary print for time difference
-                print("Time Difference: \n")
-                print(timeFunctions.stop(timerString))
+                differenceStr = timeFunctions.stop(timerString)
 
+            # Stats button clicked
             elif modes==0 and (mousePos[0]>22 and mousePos[0]<375)and (mousePos[1]>132 and mousePos[1]<342):
                 modes = 3
         
@@ -224,7 +224,7 @@ while running:
         if (tick/60 % 10) == 0:
             currentFact = facts.getFact("facts.txt")
             bottomText = franklinSmall.render(currentFact, True, grey, white)
-            bottomTextRect.center = (getx.getx(currentFact), 675)
+            bottomTextRect.center = (getx.getX(currentFact), 675)
     
     # End timer screen
     elif modes==2:
@@ -234,6 +234,10 @@ while running:
 
         text = franklinLarge.render(freezeTimerString, True, black, greyLight)
         screen.blit(text, textRect)
+
+        bottomText = franklinSmall.render(differenceStr, True, grey, white)
+        bottomTextRect.center = (getx.getX(differenceStr), 675)
+        screen.blit(bottomText, bottomTextRect)
 
         # Stars
         starTimer += 1
@@ -253,6 +257,7 @@ while running:
             if accum < stars:
                 accum += 1
 
+    # Stats page
     else :
         screen.fill(white)
         img(bg3, 0, 0)
