@@ -48,6 +48,8 @@ pygame.display.flip()
 
 # Images
 bg = pygame.image.load('mainpage.jpg')
+homePagePooIcon = pygame.image.load('poopicon.png')
+homePageTrendsIcon = pygame.image.load('arrowicon.png')
 
 # Colours
 black = (0,0,0)
@@ -75,9 +77,9 @@ text = franklinLarge.render(timerString, True, black, white)
 textRect = text.get_rect()
 textRect.center = (150, 350)
 
-welcomeBack = franklinSmall.render("Welcome, " + oliver.name + "!", True, black, white)
-welcomeBackRect = welcomeBack.get_rect()
-welcomeBackRect.center = (197, 675)
+bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, black, white)
+bottomTextRect = bottomText.get_rect()
+bottomTextRect.center = (197, 675)
 
 ####
 
@@ -97,16 +99,22 @@ while running:
                 modes=1
                 timerInt = 0
                 tick = 0
+
+            # Homescreen Poo button presssed
+            elif modes==1 and (mousePos[1]>350 and mousePos[1]<700):
+                modes=2
         
     # Update display
 
-    # Homescreen
+    # Home screen
     if modes == 0:
         screen.fill(white)
         img(bg, 0, 0)
-        screen.blit(welcomeBack, welcomeBackRect)
+        img(homePagePooIcon, 0, 0)
+        img(homePageTrendsIcon, 0, 0)
+        screen.blit(bottomText, bottomTextRect)
 
-    # In timer
+    # In timer screen
     elif modes==1:
         screen.fill(white)
         text = franklinLarge.render(timerString, True, black, white)
@@ -114,11 +122,18 @@ while running:
 
         mins, secs = divmod(timerInt, 60)
         timerString = '{:02d}:{:02d}'.format(mins, secs)
-        print(timerString, end="\r")
-        #time.sleep(1)
         tick += 1
 
         timerInt = math.floor(tick/60)
+
+        # Facts
+        screen.blit(bottomText, bottomTextRect)
+        if (tick/60 % 5) == 0:
+            bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, black, white)
+    
+    # End timer screen
+    elif modes==2:
+        screen.fill(white)
 
     pygame.display.update()
     clock.tick(60)
