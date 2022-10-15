@@ -46,7 +46,8 @@ def getLargest():
         if (secs > largestInt):
             largestInt = secs
             largestString = entry
-    
+
+    file.close()
     return tuple(largestString.split("+"))
 
 def getFastest():
@@ -67,6 +68,7 @@ def getFastest():
             smallestInt = secs
             smallestString = entry
 
+    file.close()
     return tuple(smallestString.split("+"))
 
 def getAverage():
@@ -88,6 +90,8 @@ def getAverage():
     avgInt = avgInt/i
     
     ret = convertSecsToString(avgInt)
+
+    file.close()
     return ret
 
 # Returns a tuple with
@@ -108,6 +112,7 @@ def stop(endTime):
     writeData(endTime)
     file = open(fileName, "r")
     stringArray = file.read().split("#")
+    file.close()
     previousSeconds = calcSeconds(stringArray[-2].split("+")[1])
     currentSeconds = calcSeconds(stringArray[-1].split("+")[1])
 
@@ -125,5 +130,17 @@ def stop(endTime):
 
     if (currentSeconds == previousSeconds):
         return (2, "Tie")
+
+def getFirst():
+    fileName = "userdata.txt"
+    filesize = os.path.getsize(fileName)
     
-    
+    if (filesize == 0):
+        return "No Poop Yet!"
+
+    file = open(fileName, "r")    
+    firstArr = file.read().split("#")[0].split("+")
+    file.close()
+
+    return "First poo: " + str(firstArr[1]) + " was on: " + str(firstArr[0]) 
+
