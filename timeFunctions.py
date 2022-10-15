@@ -22,8 +22,6 @@ def calcSeconds(input):
     seconds = int(array[1]) + 60*int(array[0])
     return seconds
 
-
-
 def getLargest():
 
     fileName = "userdata.txt"
