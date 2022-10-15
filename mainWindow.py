@@ -47,7 +47,7 @@ pygame.display.flip()
 ## VARIABLE INITIALIZATION ##
 
 # Images
-bg = pygame.image.load('mainpage.jpg')
+bg0 = pygame.image.load('mainpage.jpg')
 homePagePooIcon = pygame.image.load('poopicon.png')
 homePageTrendsIcon = pygame.image.load('arrowicon.png')
 
@@ -99,8 +99,9 @@ while running:
                 modes=1
                 timerInt = 0
                 tick = 0
+                bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, black, white)
 
-            # Homescreen Poo button presssed
+            # Poo stop button pressed
             elif modes==1 and (mousePos[1]>350 and mousePos[1]<700):
                 modes=2
                 timeFunctions.writeData(timerString)
@@ -110,7 +111,7 @@ while running:
     # Home screen
     if modes == 0:
         screen.fill(white)
-        img(bg, 0, 0)
+        img(bg0, 0, 0)
         img(homePagePooIcon, 0, 0)
         img(homePageTrendsIcon, 0, 0)
         screen.blit(bottomText, bottomTextRect)
@@ -120,6 +121,8 @@ while running:
         screen.fill(white)
         text = franklinLarge.render(timerString, True, black, white)
         screen.blit(text, textRect)
+
+
 
         mins, secs = divmod(timerInt, 60)
         timerString = '{:02d}:{:02d}'.format(mins, secs)
