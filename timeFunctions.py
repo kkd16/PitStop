@@ -48,7 +48,8 @@ def getLargest():
             largestString = entry
 
     file.close()
-    return tuple(largestString.split("+"))
+    largestArray = largestString.split("+")
+    return "Your worst time was " + largestArray[1] + " on " + largestArray[0] + "."
 
 def getFastest():
 
@@ -69,7 +70,8 @@ def getFastest():
             smallestString = entry
 
     file.close()
-    return tuple(smallestString.split("+"))
+    smallestArray = smallestString.split("+")
+    return "Your best time was " + smallestArray[1] + " on " + smallestArray[0] + "."
 
 def getAverage():
 
@@ -94,12 +96,8 @@ def getAverage():
     file.close()
     return ret
 
-# Returns a tuple with
-# -1 if this is first
-# 0 if most recent is faster
-# 1 if most recent is slower
-# 2 if tie
-# the second entry has the difference in time (always positive)
+# Writes data
+# Returns Difference from last poo
 def stop(endTime):
 
     fileName = "userdata.txt"
@@ -107,7 +105,7 @@ def stop(endTime):
     
     if (filesize==0):
         writeData(endTime)
-        return (-1, "No Record")
+        return "This was your first poo!"
 
     writeData(endTime)
     file = open(fileName, "r")
@@ -120,16 +118,16 @@ def stop(endTime):
     if (currentSeconds > previousSeconds):
         difference = currentSeconds - previousSeconds
         ret = convertSecsToString(difference)
-        return (1, ret)
+        return "Your poo was slower than last time by " + ret + " :("
 
     # scored a better time
     if (currentSeconds < previousSeconds):
         difference = previousSeconds - currentSeconds
         ret = convertSecsToString(difference)
-        return (0, ret)
+        return "Your poo was faster than last time by " + ret + " :)"
 
     if (currentSeconds == previousSeconds):
-        return (2, "Tie")
+        return "You were the same speed as last time."
 
 def getFirst():
     fileName = "userdata.txt"
@@ -142,5 +140,5 @@ def getFirst():
     firstArr = file.read().split("#")[0].split("+")
     file.close()
 
-    return "First poo: " + str(firstArr[1]) + " was on: " + str(firstArr[0]) 
+    return "Your first poo was " + str(firstArr[1]) + " on: " + str(firstArr[0]) 
 
