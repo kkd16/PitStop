@@ -8,14 +8,14 @@ Fall Hacks 2022
 
 ## Authors
 
-Philip Gilhespy
-- [@pgilhespy](https://www.github.com/pgilhespy)
-Brandan Kwok
-- [@brandankwok](https://www.github.com/brandankwok)
-Annie Boltwood
-- [@annieboltwood](https://www.github.com/annieboltwood)
-Kyle Deliyannides
-- [@kkd16](https://www.github.com/kkd16)
+
+- [@pgilhespy](https://www.github.com/pgilhespy) Philip Gilhespy
+
+- [@brandankwok](https://www.github.com/brandankwok) Brandan Kwok
+
+- [@annieboltwood](https://www.github.com/annieboltwood) Annie Boltwood
+
+- [@kkd16](https://www.github.com/kkd16) Kyle Deliyannides
 
 
 
