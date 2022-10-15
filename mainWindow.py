@@ -86,7 +86,7 @@ dots = 0 # 0 dots, 1 dot, 2 dots, 3 dots
 clock = pygame.time.Clock()
 
 # User
-oliver = User("Oliver", 74)
+oliver = User("Oliver Xie", 74)
 
 # Temps and stuff
 totalSeconds = 0
@@ -107,19 +107,19 @@ textRect.center = (195, 295)
 
 bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
 bottomTextRect = bottomText.get_rect()
-bottomTextRect.center = (197, 675)
+bottomTextRect.center = (getx.getX(oliver.name), 675)
 
 stat1 = franklinMed.render( timeFunctions.getFastest(), True, black, white)
 stat1Rect = stat1.get_rect()
-stat1Rect.center = (197, 300)
+stat1Rect.center = (getx.getX(timeFunctions.getFastest()), 280)
 
 stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
 stat2Rect = stat2.get_rect()
-stat2Rect.center = (197, 400)
+stat2Rect.center = (getx.getX(timeFunctions.getFastest()), 380)
 
 stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
 stat3Rect = stat3.get_rect()
-stat3Rect.center = (197, 400)
+stat3Rect.center = (getx.getX(timeFunctions.getFastest()), 480)
 
 ####
 
@@ -169,6 +169,13 @@ while running:
             # Stats button clicked
             elif modes==0 and (mousePos[0]>22 and mousePos[0]<375)and (mousePos[1]>132 and mousePos[1]<342):
                 modes = 3
+
+            # Home button clicked
+            elif (modes==2 or modes==3) and (mousePos[0]>105 and mousePos[0]<285) and (mousePos[1]>566 and mousePos[1]<620):
+                modes = 0
+                bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
+                bottomTextRect = bottomText.get_rect()
+                bottomTextRect.center = (getx.getX(oliver.name), 675)
         
     # Update display
 
