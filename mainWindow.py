@@ -70,7 +70,7 @@ oliver = User("Oliver", 74)
 
 ## OBJECT INITIALIZATION ##
 
-text = font.render('Kyle is gay', True, black, white)
+text = franklinLarge.render(timerString, True, black, white)
 textRect = text.get_rect()
 textRect.center = (150, 350)
 
@@ -108,7 +108,7 @@ while running:
     # In timer
     elif modes==1:
         screen.fill(white)
-        text = font.render('Kyle is gay', True, black, white)
+        text = franklinLarge.render(timerString, True, black, white)
         screen.blit(text, textRect)
 
         mins, secs = divmod(timerInt, 60)
@@ -118,9 +118,6 @@ while running:
         tick += 1
 
         timerInt = math.floor(tick/60)
-
-
-        
 
     pygame.display.update()
     clock.tick(60)
