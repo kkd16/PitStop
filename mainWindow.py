@@ -10,7 +10,17 @@ def img(img, x, y):
 
 ####
 
+## ALL CLASSES ##
+
+class User:
+  def __init__(self, name, age):
+    self.name = name
+    self.age = age
+
+####
+
 ## WINDOW INITIALIZATION ##
+
 pygame.init()
 
 background_colour = (255,255,255)
@@ -27,14 +37,16 @@ pygame.display.flip()
 ## VARIABLE INITIALIZATION ##
 
 # Images
-button1 = pygame.image.load('buttonPlaceHolder.png')
+bg = pygame.image.load('mainpage.jpg')
 
 # Colours
 black = (0,0,0)
 white = (255,255,255)
+grey = (177,177,177)
 
 # Fonts
-font=pygame.font.SysFont("Comic Sans MS", 40)
+franklinLarge=pygame.font.SysFont("Franklin", 40)
+franklinSmall=pygame.font.SysFont("Franklin", 25)
 
 # Run Modes
 modes = 0 # 0=home, 1=timer, 2=endtimer, 3=trends
@@ -42,13 +54,20 @@ modes = 0 # 0=home, 1=timer, 2=endtimer, 3=trends
 # Timer?
 clock = pygame.time.Clock()
 
+# User
+oliver = User("Oliver", 74)
+
 ####
 
 ## OBJECT INITIALIZATION ##
 
-text = font.render('Kyle is gay', True, black, white)
+text = franklinLarge.render('Kyle is gay', True, black, white)
 textRect = text.get_rect()
 textRect.center = (150, 350)
+
+welcomeBack = franklinSmall.render("Welcome, " + oliver.name + "!", True, black, white)
+welcomeBackRect = welcomeBack.get_rect()
+welcomeBackRect.center = (197, 675)
 
 ####
 
@@ -73,12 +92,13 @@ while running:
     # Homescreen
     if modes == 0:
         screen.fill(white)
-        img(button1, 43, 50)
+        img(bg, 0, 0)
+        screen.blit(welcomeBack, welcomeBackRect)
 
     # In timer
     elif modes==1:
         screen.fill(white)
-        text = font.render('Kyle is gay', True, black, white)
+        text = franklinLarge.render('Kyle is gay', True, black, white)
         screen.blit(text, textRect)
         
 
