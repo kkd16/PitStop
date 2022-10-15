@@ -14,6 +14,7 @@ def writeData(endTime):
        toWrite = "#" + toWrite
 
     toWrite = toWrite + todaysDate + "+"  + endTime
+    print("Writing Data: ", toWrite + "\n")
     file.write(toWrite)
     file.close()
 
