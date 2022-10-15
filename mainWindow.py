@@ -110,6 +110,7 @@ while running:
             # Poo stop button pressed
             elif modes==1 and (mousePos[0]>33 and mousePos[0]<358)and (mousePos[1]>491 and mousePos[1]<589):
                 modes=2
+                timeFunctions.writeData(timerString)
         
     # Update display
 
