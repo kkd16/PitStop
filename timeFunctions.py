@@ -129,27 +129,15 @@ def stop(endTime):
     if (currentSeconds > previousSeconds):
         difference = currentSeconds - previousSeconds
         ret = convertSecsToString(difference)
-        return "Your poo was slower than last time by " + ret + " :("
+        return "Slower than last time by " + ret + " :("
 
     # scored a better time
     if (currentSeconds < previousSeconds):
         difference = previousSeconds - currentSeconds
         ret = convertSecsToString(difference)
-        return "Your poo was faster than last time by " + ret + " :)"
+        return "Faster than last time by " + ret + " :)"
 
     if (currentSeconds == previousSeconds):
-        return "You were the same speed as last time."
+        return "Same speed as last time."
 
-def getFirst():
-    fileName = "userdata.txt"
-    filesize = os.path.getsize(fileName)
-    
-    if (filesize == 0):
-        return "No Poop Yet!"
-
-    file = open(fileName, "r")    
-    firstArr = file.read().split("#")[0].split("+")
-    file.close()
-
-    return "Your first poo was " + str(firstArr[1]) + " on: " + str(firstArr[0]) 
 
