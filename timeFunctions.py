@@ -30,8 +30,11 @@ def convertSecsToString(input):
     return ret
 
 def getLargest():
-
     fileName = "userdata.txt"
+    filesize = os.path.getsize(fileName)
+
+    if filesize==0:
+        return "No poops yet!"
     file = open(fileName, "r")
     
     string = file.read()
@@ -54,6 +57,10 @@ def getLargest():
 def getFastest():
 
     fileName = "userdata.txt"
+    filesize = os.path.getsize(fileName)
+
+    if filesize==0:
+        return "No poops yet!"
     file = open(fileName, "r")
     
     string = file.read()
@@ -76,6 +83,10 @@ def getFastest():
 def getAverage():
 
     fileName = "userdata.txt"
+    filesize = os.path.getsize(fileName)
+
+    if filesize==0:
+        return "No poops yet!"
     file = open(fileName, "r")
     
     string = file.read()
@@ -94,7 +105,7 @@ def getAverage():
     ret = convertSecsToString(avgInt)
 
     file.close()
-    return ret
+    return "Your average poo time is " + ret + "."
 
 # Writes data
 # Returns Difference from last poo
