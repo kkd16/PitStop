@@ -1,10 +1,6 @@
 import random
 
-file = open("facts.txt")
-
-def randnum(fname):
+def getFact(fname):
 	lines = open(fname).read().splitlines()
 	# print(lines)
 	return random.choice(lines)
-
-print(randnum('facts.txt'))
