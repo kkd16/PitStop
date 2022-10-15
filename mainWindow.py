@@ -48,20 +48,26 @@ pygame.display.flip()
 
 # Images
 bg0 = pygame.image.load('mainpage.jpg')
+bg1 = pygame.image.load('progresspage.jpg')
 homePagePooIcon = pygame.image.load('poopicon.png')
 homePageTrendsIcon = pygame.image.load('arrowicon.png')
+dot1 = pygame.image.load('dot/dot1.png')
+dot2 = pygame.image.load('dot/dot2.png')
+dot3 = pygame.image.load('dot/dot3.png')
 
 # Colours
 black = (0,0,0)
 white = (255,255,255)
 grey = (177,177,177)
+greyLight = (240,240,240)
 
 # Fonts
-franklinLarge=pygame.font.SysFont("Franklin", 40)
+franklinLarge=pygame.font.SysFont("Franklin", 135)
 franklinSmall=pygame.font.SysFont("Franklin", 25)
 
 # Run Modes
 modes = 0 # 0=home, 1=timer, 2=endtimer, 3=trends
+dots = 0 # 0 dots, 1 dot, 2 dots, 3 dots
 
 # Timer?
 clock = pygame.time.Clock()
@@ -73,11 +79,11 @@ oliver = User("Oliver", 74)
 
 ## OBJECT INITIALIZATION ##
 
-text = franklinLarge.render(timerString, True, black, white)
+text = franklinLarge.render(timerString, True, black, greyLight)
 textRect = text.get_rect()
-textRect.center = (150, 350)
+textRect.center = (195, 295)
 
-bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, black, white)
+bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
 bottomTextRect = bottomText.get_rect()
 bottomTextRect.center = (197, 675)
 
@@ -95,14 +101,14 @@ while running:
             mousePos=pygame.mouse.get_pos()
 
             # Homescreen Poo button presssed
-            if modes==0 and (mousePos[0]>43 and mousePos[0]<343) and (mousePos[1]>50 and mousePos[1]<200):
+            if modes==0 and (mousePos[0]>25 and mousePos[0]<373) and (mousePos[1]>382 and mousePos[1]<592):
                 modes=1
                 timerInt = 0
                 tick = 0
-                bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, black, white)
+                bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
 
             # Poo stop button pressed
-            elif modes==1 and (mousePos[1]>350 and mousePos[1]<700):
+            elif modes==1 and (mousePos[0]>33 and mousePos[0]<358)and (mousePos[1]>491 and mousePos[1]<589):
                 modes=2
         
     # Update display
@@ -117,12 +123,37 @@ while running:
 
     # In timer screen
     elif modes==1:
+        # UI updates
         screen.fill(white)
-        text = franklinLarge.render(timerString, True, black, white)
+
+        img(bg1, 0, 0)
+
+        if dots == 1 :
+            img(dot1, 0, 0)
+
+        elif dots == 2 :
+            img(dot1, 0, 0)
+            img(dot2, 0, 0)
+        
+        elif dots == 3 :
+            img(dot1, 0, 0)
+            img(dot2, 0, 0)
+            img(dot3, 0, 0)
+
+        if (tick/60 % 1) == 0:
+            if dots == 0:
+                dots=1
+            elif dots == 1:
+                dots=2
+            elif dots == 2:
+                dots=3
+            else :
+                dots=0
+        
+        # Timer
+        text = franklinLarge.render(timerString, True, black, greyLight)
         screen.blit(text, textRect)
-
-
-
+                
         mins, secs = divmod(timerInt, 60)
         timerString = '{:02d}:{:02d}'.format(mins, secs)
         tick += 1
@@ -131,8 +162,8 @@ while running:
 
         # Facts
         screen.blit(bottomText, bottomTextRect)
-        if (tick/60 % 5) == 0:
-            bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, black, white)
+        if (tick/60 % 10) == 0:
+            bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
     
     # End timer screen
     elif modes==2:
