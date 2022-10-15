@@ -1,4 +1,6 @@
 import os
+import facts
+import timeFunctions
 from datetime import date
 
 def writeData(endTime):
