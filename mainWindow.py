@@ -52,8 +52,9 @@ pygame.display.flip()
 
 # Images
 bg0 = pygame.image.load('mainpage.jpg')
-bg1 = pygame.image.load('progresspage1.0.jpg')
-bg2 = pygame.image.load('scorepage1.0.jpg')
+bg1 = pygame.image.load('progresspage1.1.jpg')
+bg2 = pygame.image.load('scorepage1.1.jpg')
+bg3 = pygame.image.load('statspage.jpg')
 homePagePooIcon = pygame.image.load('poopicon.png')
 homePageTrendsIcon = pygame.image.load('arrowicon.png')
 dot1 = pygame.image.load('dot/dot1.png')
@@ -73,6 +74,7 @@ greyLight = (240,240,240)
 
 # Fonts
 franklinLarge=pygame.font.SysFont("Franklin", 135)
+franklinMed=pygame.font.SysFont("Franklin", 40)
 franklinSmall=pygame.font.SysFont("Franklin", 25)
 
 # Run Modes
@@ -103,6 +105,18 @@ textRect.center = (195, 295)
 bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
 bottomTextRect = bottomText.get_rect()
 bottomTextRect.center = (197, 675)
+
+stat1 = franklinMed.render( timeFunctions.getFastest(), True, black, greyLight)
+stat1Rect = stat1.get_rect()
+stat1Rect.center = (197, 300)
+
+stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, greyLight)
+stat2Rect = stat2.get_rect()
+stat2Rect.center = (197, 400)
+
+stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, greyLight)
+stat3Rect = stat3.get_rect()
+stat3Rect.center = (197, 400)
 
 ####
 
@@ -148,6 +162,9 @@ while running:
                 #temporary print for time difference
                 print("Time Difference: \n")
                 print(timeFunctions.stop(timerString))
+
+            elif modes==0 and (mousePos[0]>22 and mousePos[0]<375)and (mousePos[1]>132 and mousePos[1]<342):
+                modes = 3
         
     # Update display
 
@@ -229,6 +246,13 @@ while running:
         if (starTimer % 15) == 0 :
             if accum < stars:
                 accum += 1
+
+    else :
+        screen.fill(white)
+        img(bg3, 0, 0)
+        screen.blit(stat1, stat1Rect)
+        screen.blit(stat2, stat2Rect)
+        screen.blit(stat3, stat3Rect)
 
     pygame.display.update()
     clock.tick(60)
