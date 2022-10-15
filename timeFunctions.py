@@ -1,5 +1,8 @@
 import os
+import math
 from datetime import date
+
+fileName = "userdata.txt"
 
 def writeData(endTime):
 
@@ -23,8 +26,6 @@ def calcSeconds(input):
     return seconds
 
 def getLargest():
-
-    fileName = "userdata.txt"
     file = open(fileName, "r")
     
     string = file.read()
@@ -43,8 +44,6 @@ def getLargest():
     return tuple(largestString.split("+"))
 
 def getFastest():
-
-    fileName = "userdata.txt"
     file = open(fileName, "r")
     
     string = file.read()
@@ -61,3 +60,25 @@ def getFastest():
             smallestString = entry
 
     return tuple(smallestString.split("+"))
+
+def getAverage():
+    file = open(fileName, "r")
+    
+    string = file.read()
+    array = string.split("#")
+
+    avgInt = 0
+    i = 0
+    for entry in array:
+        array = entry.split("+")
+        secs = calcSeconds(array[1])
+        avgInt = avgInt + secs
+        i = i + 1
+    
+    avgInt = avgInt/i
+    
+    mins = math.floor(avgInt/60)
+    secs = math.floor(avgInt % 60)
+    ret = '{:02d}:{:02d}'.format(mins, secs)
+    print(ret)
+    return ret
