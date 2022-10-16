@@ -135,7 +135,7 @@ while running:
                 modes=1
                 timerInt = 0
                 tick = 0
-                bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
+                bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, black, white)
                 bottomTextRect = bottomText.get_rect()
                 bottomTextRect.center = (197, 670)
 
@@ -170,17 +170,21 @@ while running:
                 stat1Rect.center = (197, 265)
                 stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
                 stat2Rect = stat2.get_rect()
-                stat2Rect.center = (197, 365)
+                stat2Rect.center = (197, 385)
                 stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
                 stat3Rect = stat3.get_rect()
-                stat3Rect.center = (197, 465)
+                stat3Rect.center = (197, 500)
+                bottomText = franklinSmall.render("First Poop Was: ", True, black, white)
+                bottomTextRect = bottomText.get_rect()
+                bottomTextRect.center = (197, 670)
+                
 
 
 
             # Home button clicked
             elif (modes==2 or modes==3) and (mousePos[0]>105 and mousePos[0]<285) and (mousePos[1]>566 and mousePos[1]<620):
                 modes = 0
-                bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
+                bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, black, white)
                 bottomTextRect = bottomText.get_rect()
                 bottomTextRect.center = (197, 670)
         
@@ -192,7 +196,7 @@ while running:
         img(bg0, 0, 0)
         img(homePagePooIcon, 0, 0)
         img(homePageTrendsIcon, 0, 0)
-        bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
+        bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, black, white)
         bottomTextRect = bottomText.get_rect()
         bottomTextRect.center = (197, 670)
         screen.blit(bottomText, bottomTextRect)
@@ -238,7 +242,7 @@ while running:
 
         # Facts
         if (tick/60 % 10) == 0:
-            bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
+            bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, black, white)
             bottomTextRect = bottomText.get_rect()
             bottomTextRect.center = (197, 670)
         screen.blit(bottomText, bottomTextRect)
@@ -252,7 +256,7 @@ while running:
         text = franklinLarge.render(freezeTimerString, True, black, greyLight)
         screen.blit(text, textRect)
 
-        bottomText = franklinSmall.render(differenceStr, True, grey, white)
+        bottomText = franklinSmall.render(differenceStr, True, black, white)
         bottomTextRect = bottomText.get_rect()
         bottomTextRect.center = (197, 670)
         screen.blit(bottomText, bottomTextRect)
@@ -285,12 +289,16 @@ while running:
         screen.blit(stat1, stat1Rect)
         stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
         stat2Rect = stat2.get_rect()
-        stat2Rect.center = (197, 365)
+        stat2Rect.center = (197, 385)
         screen.blit(stat2, stat2Rect)
         stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
         stat3Rect = stat3.get_rect()
-        stat3Rect.center = (197, 465)
+        stat3Rect.center = (197, 500)
         screen.blit(stat3, stat3Rect)
+        bottomText = franklinSmall.render("First Poop Was: ", True, black, white)
+        bottomTextRect = bottomText.get_rect()
+        bottomTextRect.center = (197, 670)
+        screen.blit(bottomText, bottomTextRect)
 
     pygame.display.update()
     clock.tick(60)
