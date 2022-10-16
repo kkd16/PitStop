@@ -107,6 +107,18 @@ def getAverage():
     file.close()
     return "Average poo - " + ret
 
+def getFirst():
+    fileName = "userdata.txt"
+    filesize = os.path.getsize(fileName)
+
+    if filesize==0:
+        return "No poops yet!"
+    file = open(fileName, "r")
+    
+    string = file.read()
+    array = string.split("#")[0].split("+")
+    return "First poop: " + array[0] + " (" + array[1] + ")"
+
 # Writes data
 # Returns Difference from last poo
 def stop(endTime):
