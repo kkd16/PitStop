@@ -262,7 +262,7 @@ while running:
             img(star3, 0 , 0)
         elif accum == 4:
             img(star4, 0 , 0)
-        else:
+        elif accum == 5:
             img(star5, 0 , 0)
         
         if (starTimer % 15) == 0 :
