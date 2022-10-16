@@ -22,9 +22,15 @@ Fall Hacks 2022
 ## To Run
 
 Requires Python and Pygame.
-To install Pygame run:
+
+To install Pygame run
 
 ```bash
   py -m pip install -U pygame --user
 ```
+
 Run mainWindow.py
+py .\mainWindow.py
+```bash
+  py .\mainWindow.py
+```
