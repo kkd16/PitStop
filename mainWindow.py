@@ -76,7 +76,7 @@ greyLight = (240,240,240)
 # Fonts
 franklinLarge=pygame.font.SysFont("Franklin", 135)
 franklinMed=pygame.font.SysFont("Franklin", 32)
-franklinSmall=pygame.font.SysFont("Franklin", 25)
+franklinSmall=pygame.font.SysFont("Franklin", 20)
 
 # Run Modes
 modes = 0 # 0=home, 1=timer, 2=endtimer, 3=trends
@@ -105,21 +105,17 @@ text = franklinLarge.render(timerString, True, black, greyLight)
 textRect = text.get_rect()
 textRect.center = (195, 295)
 
-bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
-bottomTextRect = bottomText.get_rect()
-bottomTextRect.center = (getx.getX(oliver.name), 675)
+# bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
+# bottomTextRect = bottomText.get_rect()
+# bottomTextRect.center = (197, 670)
 
-stat1 = franklinMed.render( timeFunctions.getFastest(), True, black, white)
-stat1Rect = stat1.get_rect()
-stat1Rect.center = (getx.getX(timeFunctions.getFastest()), 265)
+# stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
+# stat2Rect = stat2.get_rect()
+# stat2Rect.center = (197, 365)
 
-stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
-stat2Rect = stat2.get_rect()
-stat2Rect.center = (getx.getX(timeFunctions.getFastest()), 365)
-
-stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
-stat3Rect = stat3.get_rect()
-stat3Rect.center = (getx.getX(timeFunctions.getFastest()), 465)
+# stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
+# stat3Rect = stat3.get_rect()
+# stat3Rect.center = (197, 465)
 
 ####
 
@@ -139,9 +135,9 @@ while running:
                 modes=1
                 timerInt = 0
                 tick = 0
-                currentFact = facts.getFact("facts.txt")
-                bottomText = franklinSmall.render(currentFact, True, grey, white)
-                bottomTextRect.center = (getx.getX(currentFact), 675)
+                bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
+                bottomTextRect = bottomText.get_rect()
+                bottomTextRect.center = (197, 670)
 
             # Poo stop button pressed
             elif modes==1 and (mousePos[0]>33 and mousePos[0]<358)and (mousePos[1]>491 and mousePos[1]<589):
@@ -170,8 +166,14 @@ while running:
             elif modes==0 and (mousePos[0]>22 and mousePos[0]<375)and (mousePos[1]>132 and mousePos[1]<342):
                 modes = 3
                 stat1 = franklinMed.render( timeFunctions.getFastest(), True, black, white)
+                stat1Rect = stat1.get_rect()
+                stat1Rect.center = (197, 265)
                 stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
+                stat2Rect = stat2.get_rect()
+                stat2Rect.center = (197, 365)
                 stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
+                stat3Rect = stat3.get_rect()
+                stat3Rect.center = (197, 465)
 
 
 
@@ -180,7 +182,7 @@ while running:
                 modes = 0
                 bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
                 bottomTextRect = bottomText.get_rect()
-                bottomTextRect.center = (getx.getX(oliver.name), 675)
+                bottomTextRect.center = (197, 670)
         
     # Update display
 
@@ -190,6 +192,9 @@ while running:
         img(bg0, 0, 0)
         img(homePagePooIcon, 0, 0)
         img(homePageTrendsIcon, 0, 0)
+        bottomText = franklinSmall.render("Welcome, " + oliver.name + "!", True, grey, white)
+        bottomTextRect = bottomText.get_rect()
+        bottomTextRect.center = (197, 670)
         screen.blit(bottomText, bottomTextRect)
 
     # In timer screen
@@ -232,11 +237,11 @@ while running:
         timerInt = math.floor(tick/60)
 
         # Facts
-        screen.blit(bottomText, bottomTextRect)
         if (tick/60 % 10) == 0:
-            currentFact = facts.getFact("facts.txt")
-            bottomText = franklinSmall.render(currentFact, True, grey, white)
-            bottomTextRect.center = (getx.getX(currentFact), 675)
+            bottomText = franklinSmall.render(facts.getFact("facts.txt"), True, grey, white)
+            bottomTextRect = bottomText.get_rect()
+            bottomTextRect.center = (197, 670)
+        screen.blit(bottomText, bottomTextRect)
     
     # End timer screen
     elif modes==2:
@@ -248,7 +253,8 @@ while running:
         screen.blit(text, textRect)
 
         bottomText = franklinSmall.render(differenceStr, True, grey, white)
-        bottomTextRect.center = (getx.getX(differenceStr), 675)
+        bottomTextRect = bottomText.get_rect()
+        bottomTextRect.center = (197, 670)
         screen.blit(bottomText, bottomTextRect)
 
         # Stars
@@ -273,8 +279,17 @@ while running:
     else :
         screen.fill(white)
         img(bg3, 0, 0)
+        stat1 = franklinMed.render( timeFunctions.getFastest(), True, black, white)
+        stat1Rect = stat1.get_rect()
+        stat1Rect.center = (197, 265)
         screen.blit(stat1, stat1Rect)
+        stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
+        stat2Rect = stat2.get_rect()
+        stat2Rect.center = (197, 365)
         screen.blit(stat2, stat2Rect)
+        stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
+        stat3Rect = stat3.get_rect()
+        stat3Rect.center = (197, 465)
         screen.blit(stat3, stat3Rect)
 
     pygame.display.update()
