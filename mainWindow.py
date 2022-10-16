@@ -174,10 +174,10 @@ while running:
                 stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
                 stat3Rect = stat3.get_rect()
                 stat3Rect.center = (197, 500)
-                bottomText = franklinSmall.render("First Poop Was: ", True, black, white)
+                bottomText = franklinSmall.render(timeFunctions.getFirst(), True, black, white)
                 bottomTextRect = bottomText.get_rect()
                 bottomTextRect.center = (197, 670)
-                
+
 
 
 
@@ -295,7 +295,7 @@ while running:
         stat3Rect = stat3.get_rect()
         stat3Rect.center = (197, 500)
         screen.blit(stat3, stat3Rect)
-        bottomText = franklinSmall.render("First Poop Was: ", True, black, white)
+        bottomText = franklinSmall.render(timeFunctions.getFirst(), True, black, white)
         bottomTextRect = bottomText.get_rect()
         bottomTextRect.center = (197, 670)
         screen.blit(bottomText, bottomTextRect)
