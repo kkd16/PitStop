@@ -117,7 +117,7 @@ def getFirst():
     
     string = file.read()
     array = string.split("#")[0].split("+")
-    return "First poop - " + array[0] + " (" + array[1] + ")"
+    return "First poop - " + array[1] + " (" + array[0] + ")"
 
 # Writes data
 # Returns Difference from last poo
