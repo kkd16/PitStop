@@ -1,7 +1,7 @@
 
 # PitStop
 
-Fall Hacks 2022
+A project for Fall Hacks 2022, our first hackaton. Keeps you accountable for taking too long on the toilet!
 
 
 
