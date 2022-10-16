@@ -75,7 +75,7 @@ greyLight = (240,240,240)
 
 # Fonts
 franklinLarge=pygame.font.SysFont("Franklin", 135)
-franklinMed=pygame.font.SysFont("Franklin", 40)
+franklinMed=pygame.font.SysFont("Franklin", 32)
 franklinSmall=pygame.font.SysFont("Franklin", 25)
 
 # Run Modes
@@ -111,15 +111,15 @@ bottomTextRect.center = (getx.getX(oliver.name), 675)
 
 stat1 = franklinMed.render( timeFunctions.getFastest(), True, black, white)
 stat1Rect = stat1.get_rect()
-stat1Rect.center = (getx.getX(timeFunctions.getFastest()), 280)
+stat1Rect.center = (getx.getX(timeFunctions.getFastest()), 265)
 
 stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
 stat2Rect = stat2.get_rect()
-stat2Rect.center = (getx.getX(timeFunctions.getFastest()), 380)
+stat2Rect.center = (getx.getX(timeFunctions.getFastest()), 365)
 
 stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
 stat3Rect = stat3.get_rect()
-stat3Rect.center = (getx.getX(timeFunctions.getFastest()), 480)
+stat3Rect.center = (getx.getX(timeFunctions.getFastest()), 465)
 
 ####
 
@@ -169,6 +169,11 @@ while running:
             # Stats button clicked
             elif modes==0 and (mousePos[0]>22 and mousePos[0]<375)and (mousePos[1]>132 and mousePos[1]<342):
                 modes = 3
+                stat1 = franklinMed.render( timeFunctions.getFastest(), True, black, white)
+                stat2 = franklinMed.render( timeFunctions.getLargest(), True, black, white)
+                stat3 = franklinMed.render( timeFunctions.getAverage(), True, black, white)
+
+
 
             # Home button clicked
             elif (modes==2 or modes==3) and (mousePos[0]>105 and mousePos[0]<285) and (mousePos[1]>566 and mousePos[1]<620):

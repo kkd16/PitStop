@@ -1,5 +1,3 @@
-file = open("facts.txt")
-
 def getX(line):
     line_width = 0
     for char in line:
