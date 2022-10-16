@@ -30,7 +30,6 @@ To install Pygame run
 ```
 
 Run mainWindow.py
-py .\mainWindow.py
 ```bash
   py .\mainWindow.py
 ```
