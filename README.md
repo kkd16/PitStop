@@ -1,7 +1,7 @@
 
 # PitStop
 
-A project for Fall Hacks 2022, our first hackaton. Keeps you accountable for taking too long on the toilet!
+A project for Fall Hacks 2022, our first hackaton. Keeps you accountable for taking too long on the toilet! We have included a userdata.txt.sample file for testing, but it is not necessary to use it (can be used by renaming to userdata.txt while the program isn't running). All the graphics are handmade by Annie!
 
 
 
@@ -21,7 +21,7 @@ A project for Fall Hacks 2022, our first hackaton. Keeps you accountable for tak
 
 ## To Run
 
-Requires Python and Pygame.
+Requires Python and Pygame. Program should be run on windows.
 
 To install Pygame run
 
